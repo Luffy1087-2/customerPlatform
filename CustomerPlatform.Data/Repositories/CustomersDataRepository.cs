@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Data.Abstract;
 
@@ -9,16 +10,16 @@ namespace CustomerPlatform.Data.Repositories
     /// </summary>
     public sealed class CustomersDataRepository : ICustomersDataRepository
     {
-        private readonly IEnumerable<ICustomer> _customers;
+        private readonly List<ICustomer> _customers;
 
         public CustomersDataRepository()
         {
             _customers = new List<ICustomer>();
         }
 
-        public IEnumerable<ICustomer> GetAllCustomers()
+        public Task<List<ICustomer>> GetAllCustomers()
         {
-            return _customers;
+            return Task.FromResult(_customers);
         }
     }
 }

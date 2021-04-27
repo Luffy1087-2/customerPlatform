@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Data.Abstract;
 
@@ -15,28 +16,28 @@ namespace CustomerPlatform.Data.Providers
             _repository = repository;
         }
 
-        public IEnumerable<ICustomer> GetAllCustomers()
+        public async Task<List<ICustomer>> GetAllCustomers()
         {
-            return _repository.GetAllCustomers();
+            return await _repository.GetAllCustomers();
         }
 
-        public int RegisterCustomer(ICustomer customer)
+        public async Task<int> RegisterCustomer(ICustomer customer)
         {
-            List<ICustomer> customers = GetAllCustomers().ToList();
+            List<ICustomer> customers = await GetAllCustomers();
 
-            customer.Id = customers.Any() ? customers.Max(c => c.Id) : 0;
+            customer.Id = customers.Any() ? customers.Count() : 0;
 
             customers.Add(customer);
 
             return customer.Id;
         }
 
-        public void UpdateCustomer(int customerId, ICustomer customer)
+        public Task UpdateCustomer(int customerId, ICustomer customer)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteCustomer(int customerId)
+        public Task DeleteCustomer(int customerId)
         {
             throw new NotImplementedException();
         }

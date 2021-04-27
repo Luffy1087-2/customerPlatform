@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using CustomerPlatform.Binders;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models;
@@ -20,17 +22,19 @@ namespace CustomerPlatform.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ICustomer> Get()
+        public async Task<object> Get()
         {
-            return _provider.GetAllCustomers();
+            List<ICustomer> customers = await _provider.GetAllCustomers();
+
+            return customers.Select(c => (object) c);
         }
 
         [HttpPost]
-        public IActionResult Post([ModelBinder(typeof(CustomerModelBinder))] CustomerDtoBase customer)
+        public async Task<IActionResult> Post([ModelBinder(typeof(CustomerModelBinder))] CustomerDtoBase customer)
         {
-            _provider.RegisterCustomer(customer);
+            await _provider.RegisterCustomer(customer);
 
-            return Ok(customer);
+            return Ok(await Task.FromResult(customer));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 
 namespace CustomerPlatform.Data.Abstract
@@ -9,6 +10,6 @@ namespace CustomerPlatform.Data.Abstract
         /// It should access to the database
         /// </summary>
         /// <returns>IEnumerable&lt;ICustomer&gt; all of the customers</returns>
-        IEnumerable<ICustomer> GetAllCustomers();
+        Task<List<ICustomer>> GetAllCustomers();
     }
 }

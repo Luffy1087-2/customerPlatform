@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerPlatform", "Custome
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerPlatform.Core", "..\CustomerPlatform.Core\CustomerPlatform.Core\CustomerPlatform.Core.csproj", "{D6968D21-39BE-40DE-9319-B0CB6BF938E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerPlatform.Data", "CustomerPlatform.Data\CustomerPlatform.Data.csproj", "{ED42CD2E-3A88-42CF-968E-9409D95A2DB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerPlatform.Data", "..\CustomerPlatform.Data\CustomerPlatform.Data.csproj", "{ED42CD2E-3A88-42CF-968E-9409D95A2DB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
