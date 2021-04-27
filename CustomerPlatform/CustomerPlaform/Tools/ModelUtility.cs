@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace CustomerPlatform.Tools
 {
-    public static class ModelUtility
+    internal static class ModelUtility
     {
         public static async Task<string> GetJsonDtoString(ModelBindingContext bindingContext)
         {

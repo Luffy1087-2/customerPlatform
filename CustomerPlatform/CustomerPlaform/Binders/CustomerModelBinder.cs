@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models;
-using CustomerPlatform.Core.Models.Customers;
 using CustomerPlatform.Tools;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
