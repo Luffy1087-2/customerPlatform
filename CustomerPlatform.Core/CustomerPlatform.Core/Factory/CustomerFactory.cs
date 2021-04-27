@@ -6,7 +6,7 @@ using CustomerPlatform.Core.Models.Customers;
 
 namespace CustomerPlatform.Core.Factory
 {
-    public class CustomerFactory : ICustomerFactory
+    public sealed class CustomerFactory : ICustomerFactory
     {
         private readonly Dictionary<string, Func<string, ICustomer>> _customersDictionary = new Dictionary<string, Func<string, ICustomer>>(StringComparer.InvariantCultureIgnoreCase);
         public CustomerFactory()

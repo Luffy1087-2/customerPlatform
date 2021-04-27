@@ -5,6 +5,7 @@ namespace CustomerPlatform.Core.Abstract
 {
     public interface ICustomer
     {
+        int Id { get; set; }
         [Required]
         string FirstName { get; set; }
         [Required]

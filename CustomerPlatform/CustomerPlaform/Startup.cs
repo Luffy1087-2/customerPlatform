@@ -1,6 +1,9 @@
 using CustomerPlatform.Binders;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Factory;
+using CustomerPlatform.Data.Abstract;
+using CustomerPlatform.Data.Providers;
+using CustomerPlatform.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +26,8 @@ namespace CustomerPlatform
         {
             services.AddControllers();
             services.AddSingleton<ICustomerFactory, CustomerFactory>();
+            services.AddSingleton<ICustomerDataProvider, CustomerDataProvider>();
+            services.AddSingleton<ICustomersDataRepository, CustomersDataRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
