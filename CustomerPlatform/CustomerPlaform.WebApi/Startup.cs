@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using CustomerPlatform.Core.Abstract;
-using CustomerPlatform.Core.Factory;
 using CustomerPlatform.Data.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -66,7 +64,7 @@ namespace CustomerPlatform.WebApi
         {
             return AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(x => x.GetTypes())
-                .Where(t => typeof(IStartup).IsAssignableFrom(t) && !t.IsInterface)
+                .Where(t => typeof(IStartup).IsAssignableFrom(t) && t.IsClass)
                 .ToList();
         }
     }

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CustomerPlatform.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]/[action]")]
     public class CustomersController : ControllerBase
     {
         private readonly ICustomerDataProvider _provider;
@@ -28,7 +28,7 @@ namespace CustomerPlatform.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([ModelBinder(typeof(CustomerModelBinder))] CustomerDtoBase customer)
+        public async Task<IActionResult> Register([ModelBinder(typeof(CustomerModelBinder))] CustomerDtoBase customer)
         {
             CustomerDtoBase registeredCustomer = await _provider.RegisterCustomer(customer);
 
