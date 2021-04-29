@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
+using CustomerPlatform.Core.Models;
 using CustomerPlatform.Data.Abstract;
+using MongoDB.Driver;
 
 namespace CustomerPlatform.Data.Repositories
 {
@@ -10,16 +13,16 @@ namespace CustomerPlatform.Data.Repositories
     /// </summary>
     public sealed class CustomersDataRepository : ICustomersDataRepository
     {
-        private readonly List<ICustomer> _customers;
+        private readonly ICustomersDbClient _client;
 
-        public CustomersDataRepository()
+        public CustomersDataRepository(ICustomersDbClient client)
         {
-            _customers = new List<ICustomer>();
+            _client = client;
         }
 
-        public Task<List<ICustomer>> GetAllCustomers()
+        public async Task<List<CustomerDtoBase>> GetCustomers()
         {
-            return Task.FromResult(_customers);
+            return await _client.GetCustomers();
         }
     }
 }

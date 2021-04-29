@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CustomerPlatform.Binders;
-using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models;
+using CustomerPlatform.Core.Models.Customers;
 using CustomerPlatform.Data.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CustomerPlatform.Controllers
+namespace CustomerPlatform.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -24,17 +23,17 @@ namespace CustomerPlatform.Controllers
         [HttpGet]
         public async Task<object> Get()
         {
-            List<ICustomer> customers = await _provider.GetAllCustomers();
+            List<CustomerDtoBase> customers = await _provider.GetAllCustomers();
 
-            return customers.Select(c => (object) c);
+            return Ok(customers.Select(c => (object) c));
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([ModelBinder(typeof(CustomerModelBinder))] CustomerDtoBase customer)
         {
-            await _provider.RegisterCustomer(customer);
+            CustomerDtoBase registeredCustomer = await _provider.RegisterCustomer(customer);
 
-            return Ok(await Task.FromResult(customer));
+            return Ok(registeredCustomer);
         }
     }
 }

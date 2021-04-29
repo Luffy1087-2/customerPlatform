@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
+using CustomerPlatform.Core.Models;
 using CustomerPlatform.Data.Abstract;
 
 namespace CustomerPlatform.Data.Providers
@@ -10,26 +10,24 @@ namespace CustomerPlatform.Data.Providers
     public class CustomerDataProvider : ICustomerDataProvider
     {
         private readonly ICustomersDataRepository _repository;
+        private readonly ICustomersDbClient _client;
 
-        public CustomerDataProvider(ICustomersDataRepository repository)
+        public CustomerDataProvider(ICustomersDbClient client, ICustomersDataRepository repository)
         {
+            _client = client;
             _repository = repository;
         }
 
-        public async Task<List<ICustomer>> GetAllCustomers()
+        public async Task<List<CustomerDtoBase>> GetAllCustomers()
         {
-            return await _repository.GetAllCustomers();
+            return await _repository.GetCustomers();
         }
 
-        public async Task<int> RegisterCustomer(ICustomer customer)
+        public async Task<CustomerDtoBase> RegisterCustomer(CustomerDtoBase customer)
         {
-            List<ICustomer> customers = await GetAllCustomers();
+            CustomerDtoBase addedCustomer = await _client.AddCustomer(customer);
 
-            customer.Id = customers.Any() ? customers.Count() : 0;
-
-            customers.Add(customer);
-
-            return customer.Id;
+            return addedCustomer;
         }
 
         public Task UpdateCustomer(int customerId, ICustomer customer)

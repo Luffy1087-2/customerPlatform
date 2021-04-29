@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerPlatform", "CustomerPlaform\CustomerPlatform.csproj", "{B979B2DB-824C-45B0-9844-031C82F2B04B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerPlatform.WebApi", "CustomerPlaform.WebApi\CustomerPlatform.WebApi.csproj", "{B979B2DB-824C-45B0-9844-031C82F2B04B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D6968D21-39BE-40DE-9319-B0CB6BF938E9} = {D6968D21-39BE-40DE-9319-B0CB6BF938E9}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerPlatform.Core", "..\CustomerPlatform.Core\CustomerPlatform.Core\CustomerPlatform.Core.csproj", "{D6968D21-39BE-40DE-9319-B0CB6BF938E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerPlatform.Data", "..\CustomerPlatform.Data\CustomerPlatform.Data.csproj", "{ED42CD2E-3A88-42CF-968E-9409D95A2DB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerPlatform.Data", "..\CustomerPlatform.Data\CustomerPlatform.Data.csproj", "{ED42CD2E-3A88-42CF-968E-9409D95A2DB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
