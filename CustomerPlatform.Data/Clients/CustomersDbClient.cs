@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Models;
 using CustomerPlatform.Core.Models.Customers;
@@ -11,7 +10,7 @@ using MongoDB.Driver;
 
 namespace CustomerPlatform.Data.Clients
 {
-    public class CustomersDbClient : ICustomersDbClient
+    internal sealed class CustomersDbClient : ICustomersDbClient
     {
         private readonly IMongoCollection<CustomerDtoBase> _customersCollection;
 

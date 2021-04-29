@@ -7,7 +7,7 @@ using CustomerPlatform.Data.Abstract;
 
 namespace CustomerPlatform.Data.Providers
 {
-    public class CustomerDataProvider : ICustomerDataProvider
+    internal sealed class CustomerDataProvider : ICustomerDataProvider
     {
         private readonly ICustomersDataRepository _repository;
         private readonly ICustomersDbClient _client;

@@ -1,18 +1,19 @@
-using CustomerPlatform.Binders;
+#nullable enable
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Factory;
-using CustomerPlatform.Data.Abstract;
-using CustomerPlatform.Data.Clients;
 using CustomerPlatform.Data.Configuration;
-using CustomerPlatform.Data.Providers;
-using CustomerPlatform.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using IStartup = CustomerPlatform.Core.Abstract.IStartup;
 
-namespace CustomerPlatform
+namespace CustomerPlatform.WebApi
 {
     public class Startup
     {
@@ -28,10 +29,7 @@ namespace CustomerPlatform
         {
             services.AddControllers();
             services.Configure<CustomersDbConfiguration>(Configuration);
-            services.AddSingleton<ICustomerFactory, CustomerFactory>();
-            services.AddSingleton<ICustomerDataProvider, CustomerDataProvider>();
-            services.AddSingleton<ICustomersDataRepository, CustomersDataRepository>();
-            services.AddSingleton<ICustomersDbClient, CustomersDbClient>();
+            ConfigureAllReferenceServices(services, Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +50,24 @@ namespace CustomerPlatform
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private static void ConfigureAllReferenceServices(IServiceCollection services, IConfiguration configuration)
+        {
+            IEnumerable<Type> startupTypes = GetReferencedAssemblyStartupTypes();
+            foreach (Type startupType in startupTypes)
+            {
+                object? instance = Activator.CreateInstance(startupType);
+                startupType.InvokeMember("ConfigureServices", BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.Public, null, instance, new object?[] { services });
+            }
+        }
+
+        private static IEnumerable<Type> GetReferencedAssemblyStartupTypes()
+        {
+            return AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(x => x.GetTypes())
+                .Where(t => typeof(IStartup).IsAssignableFrom(t) && !t.IsInterface)
+                .ToList();
         }
     }
 }

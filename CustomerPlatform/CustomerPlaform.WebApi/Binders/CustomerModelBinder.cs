@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models;
-using CustomerPlatform.Tools;
+using CustomerPlatform.WebApi.Tools;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace CustomerPlatform.Binders
+namespace CustomerPlatform.WebApi.Binders
 {
     public class CustomerModelBinder : IModelBinder
     {

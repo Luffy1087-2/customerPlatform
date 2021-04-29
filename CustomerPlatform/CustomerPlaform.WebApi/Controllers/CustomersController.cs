@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CustomerPlatform.Binders;
 using CustomerPlatform.Core.Models;
-using CustomerPlatform.Core.Models.Customers;
 using CustomerPlatform.Data.Abstract;
+using CustomerPlatform.WebApi.Binders;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CustomerPlatform.WebApi.Controllers

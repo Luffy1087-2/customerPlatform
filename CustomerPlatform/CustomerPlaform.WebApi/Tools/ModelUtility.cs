@@ -3,7 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace CustomerPlatform.Tools
+namespace CustomerPlatform.WebApi.Tools
 {
     internal static class ModelUtility
     {
