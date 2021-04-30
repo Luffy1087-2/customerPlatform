@@ -1,6 +1,6 @@
 ﻿namespace CustomerPlatform.Core.Configuration
 {
-    public class CustomersDbConfiguration
+    public sealed class CustomersDbConfiguration
     {
         public string DatabaseName { get; set; }
         public string CollectionName { get; set; }

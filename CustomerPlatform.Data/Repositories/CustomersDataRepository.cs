@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CustomerPlatform.Core.Models;
+using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Data.Abstract;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -19,9 +19,9 @@ namespace CustomerPlatform.Data.Repositories
             _client = client;
         }
 
-        public async Task<List<CustomerDtoBase>> GetCustomers()
+        public async Task<List<ICustomer>> GetCustomers()
         {
-            List<CustomerDtoBase> customers = await _cache.GetOrCreateAsync(CacheKey, async entry => await GetDbCustomers(entry));
+            List<ICustomer> customers = await _cache.GetOrCreateAsync(CacheKey, async entry => await GetDbCustomers(entry));
 
             return customers;
         }
@@ -33,7 +33,7 @@ namespace CustomerPlatform.Data.Repositories
 
         #region Private Members
 
-        private async Task<List<CustomerDtoBase>> GetDbCustomers(ICacheEntry entry)
+        private async Task<List<ICustomer>> GetDbCustomers(ICacheEntry entry)
         {
             entry.SetSlidingExpiration(TimeSpan.MaxValue);
 

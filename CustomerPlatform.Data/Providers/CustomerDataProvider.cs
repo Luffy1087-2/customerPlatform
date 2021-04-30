@@ -18,14 +18,14 @@ namespace CustomerPlatform.Data.Providers
             _repository = repository;
         }
 
-        public async Task<List<CustomerDtoBase>> GetAllCustomers()
+        public async Task<List<ICustomer>> GetAllCustomers()
         {
             return await _repository.GetCustomers();
         }
 
-        public async Task<CustomerDtoBase> RegisterCustomer(CustomerDtoBase customer)
+        public async Task<ICustomer> RegisterCustomer(CustomerDtoBase customer)
         {
-            CustomerDtoBase addedCustomer = await _client.AddCustomer(customer);
+            ICustomer addedCustomer = await _client.AddCustomer(customer);
 
             _repository.EmptyCustomerCache();
 

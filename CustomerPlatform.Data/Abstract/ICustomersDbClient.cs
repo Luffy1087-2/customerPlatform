@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models;
 
 namespace CustomerPlatform.Data.Abstract
 {
-    public interface ICustomersDbClient
+    internal interface ICustomersDbClient
     {
-        Task<List<CustomerDtoBase>> GetCustomers();
-        Task<CustomerDtoBase> AddCustomer(CustomerDtoBase customer);
+        Task<List<ICustomer>> GetCustomers();
+        Task<ICustomer> AddCustomer(CustomerDtoBase customer);
     }
 }

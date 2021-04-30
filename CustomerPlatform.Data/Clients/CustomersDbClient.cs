@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Configuration;
 using CustomerPlatform.Core.Models;
 using CustomerPlatform.Core.Models.Customers;
@@ -21,14 +22,14 @@ namespace CustomerPlatform.Data.Clients
             _customersCollection = GetCustomerAccessCollection(dbConfig);
         }
 
-        public async Task<List<CustomerDtoBase>> GetCustomers()
+        public async Task<List<ICustomer>> GetCustomers()
         { 
-            IAsyncCursor<CustomerDtoBase> customers = await _customersCollection.FindAsync(c => true);
+            IAsyncCursor<ICustomer> customers = await _customersCollection.FindAsync(c => true);
 
             return customers.ToList();
         }
 
-        public async Task<CustomerDtoBase> AddCustomer(CustomerDtoBase customer)
+        public async Task<ICustomer> AddCustomer(CustomerDtoBase customer)
         {
             await _customersCollection.InsertOneAsync(customer);
 
@@ -41,7 +42,7 @@ namespace CustomerPlatform.Data.Clients
         {
             var client = new MongoClient(dbConfig.Value.ConnectionString);
             var database = client.GetDatabase(dbConfig.Value.DatabaseName);
-            var collection = database.GetCollection<CustomerDtoBase>(dbConfig.Value.CollectionName);
+            IMongoCollection<CustomerDtoBase> collection = database.GetCollection<CustomerDtoBase>(dbConfig.Value.CollectionName);
 
             return collection;
         }

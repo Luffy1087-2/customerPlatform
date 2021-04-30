@@ -22,7 +22,7 @@ namespace CustomerPlatform.WebApi.Controllers
         [HttpGet]
         public async Task<object> Get()
         {
-            List<CustomerDtoBase> customers = await _provider.GetAllCustomers();
+            List<ICustomer> customers = await _provider.GetAllCustomers();
 
             return Ok(customers.Select(c => (object) c));
         }
@@ -30,7 +30,7 @@ namespace CustomerPlatform.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Register([ModelBinder(typeof(CustomerModelBinder))] CustomerDtoBase customer)
         {
-            CustomerDtoBase registeredCustomer = await _provider.RegisterCustomer(customer);
+            ICustomer registeredCustomer = await _provider.RegisterCustomer(customer);
 
             return Ok(registeredCustomer);
         }

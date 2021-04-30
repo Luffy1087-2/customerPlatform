@@ -1,8 +1,5 @@
 #nullable enable
-using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Configuration;
-using CustomerPlatform.Core.Factory;
-using CustomerPlatform.WebApi.Tools;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,8 +21,6 @@ namespace CustomerPlatform.WebApi.Startup
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CustomersDbConfiguration>(Configuration);
-            StartupUtility.ConfigureAllServices(services);
-            services.AddSingleton<ICustomerFactory, CustomerFactory>();
             services.AddControllers();
         }
 

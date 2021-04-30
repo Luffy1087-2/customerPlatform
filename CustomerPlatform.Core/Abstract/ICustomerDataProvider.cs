@@ -6,8 +6,8 @@ namespace CustomerPlatform.Core.Abstract
 {
     public interface ICustomerDataProvider
     {
-        Task<List<CustomerDtoBase>> GetAllCustomers();
-        Task<CustomerDtoBase> RegisterCustomer(CustomerDtoBase customer);
+        Task<List<ICustomer>> GetAllCustomers();
+        Task<ICustomer> RegisterCustomer(CustomerDtoBase customer);
         Task UpdateCustomer(int customerId, ICustomer customer);
         Task DeleteCustomer(int customerId);
     }
