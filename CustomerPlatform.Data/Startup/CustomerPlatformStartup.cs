@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CustomerPlatform.Data.Startup
 {
-    public class Startup : IStartup
+    public class CustomerPlatformStartup : ICustomerPlatformStartup
     {
         public void ConfigureServices(IServiceCollection services)
         {

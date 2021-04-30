@@ -2,7 +2,7 @@
 
 namespace CustomerPlatform.Core.Abstract
 {
-    public interface IStartup
+    public interface ICustomerPlatformStartup
     {
         void ConfigureServices(IServiceCollection services);
     }

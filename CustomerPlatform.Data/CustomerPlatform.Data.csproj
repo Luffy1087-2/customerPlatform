@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CustomerPlatform.Core\CustomerPlatform.Core\CustomerPlatform.Core.csproj" />
+    <ProjectReference Include="..\CustomerPlatform.Core\CustomerPlatform.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

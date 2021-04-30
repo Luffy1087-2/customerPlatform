@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using CustomerPlatform.Core.Configuration;
 using CustomerPlatform.Core.Models;
 using CustomerPlatform.Core.Models.Customers;
 using CustomerPlatform.Data.Abstract;
-using CustomerPlatform.Data.Configuration;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;

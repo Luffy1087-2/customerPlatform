@@ -5,7 +5,6 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace CustomerPlatform.Core.Models
 {
-    //[BsonIgnoreExtraElements]
     public class CustomerDtoBase : ICustomer
     {
         [BsonId]

@@ -1,15 +1,13 @@
 #nullable enable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using CustomerPlatform.Data.Configuration;
+using CustomerPlatform.Core.Abstract;
+using CustomerPlatform.Core.Configuration;
+using CustomerPlatform.Core.Factory;
+using CustomerPlatform.WebApi.Tools;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using IStartup = CustomerPlatform.Core.Abstract.IStartup;
 
 namespace CustomerPlatform.WebApi.Startup
 {
@@ -25,9 +23,10 @@ namespace CustomerPlatform.WebApi.Startup
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
             services.Configure<CustomersDbConfiguration>(Configuration);
-            ConfigureAllReferenceServices(services, Configuration);
+            StartupUtility.ConfigureAllServices(services);
+            services.AddSingleton<ICustomerFactory, CustomerFactory>();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,24 +47,6 @@ namespace CustomerPlatform.WebApi.Startup
             {
                 endpoints.MapControllers();
             });
-        }
-
-        private static void ConfigureAllReferenceServices(IServiceCollection services, IConfiguration configuration)
-        {
-            IEnumerable<Type> startupTypes = GetReferencedAssemblyStartupTypes();
-            foreach (Type startupType in startupTypes)
-            {
-                object? instance = Activator.CreateInstance(startupType);
-                startupType.InvokeMember("ConfigureServices", BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.Public, null, instance, new object?[] { services });
-            }
-        }
-
-        private static IEnumerable<Type> GetReferencedAssemblyStartupTypes()
-        {
-            return AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(x => x.GetTypes())
-                .Where(t => typeof(IStartup).IsAssignableFrom(t) && t.IsClass)
-                .ToList();
         }
     }
 }
