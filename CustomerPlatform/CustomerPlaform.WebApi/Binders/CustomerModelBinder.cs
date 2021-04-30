@@ -18,7 +18,7 @@ namespace CustomerPlatform.WebApi.Binders
 
         public async Task BindModelAsync(ModelBindingContext bindingContext)
         {
-            var jsonString = await ModelUtility.GetJsonDtoString(bindingContext);
+            var jsonString = await ModelBinderUtility.GetJsonDtoString(bindingContext);
             var baseModel = JsonSerializer.Deserialize<CustomerDtoBase>(jsonString);
             ICustomer customerModel = _factory.Create(baseModel.CustomerType, jsonString);
 

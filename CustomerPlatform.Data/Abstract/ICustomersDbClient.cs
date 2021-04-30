@@ -4,7 +4,7 @@ using CustomerPlatform.Core.Models;
 
 namespace CustomerPlatform.Data.Abstract
 {
-    public interface ICustomersDbClient
+    internal interface ICustomersDbClient
     {
         Task<List<CustomerDtoBase>> GetCustomers();
         Task<CustomerDtoBase> AddCustomer(CustomerDtoBase customer);

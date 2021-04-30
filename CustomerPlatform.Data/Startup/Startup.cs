@@ -11,6 +11,7 @@ namespace CustomerPlatform.Data.Startup
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
             services.AddSingleton<ICustomersDbClient, CustomersDbClient>();
             services.AddSingleton<ICustomerDataProvider, CustomerDataProvider>();
             services.AddSingleton<ICustomersDataRepository, CustomersDataRepository>();

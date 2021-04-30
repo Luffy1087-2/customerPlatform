@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models;
 using CustomerPlatform.Data.Abstract;
 using CustomerPlatform.WebApi.Binders;

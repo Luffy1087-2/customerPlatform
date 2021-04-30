@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using IStartup = CustomerPlatform.Core.Abstract.IStartup;
 
-namespace CustomerPlatform.WebApi
+namespace CustomerPlatform.WebApi.Startup
 {
     public class Startup
     {

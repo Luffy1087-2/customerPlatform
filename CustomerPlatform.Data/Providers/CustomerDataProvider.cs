@@ -27,6 +27,8 @@ namespace CustomerPlatform.Data.Providers
         {
             CustomerDtoBase addedCustomer = await _client.AddCustomer(customer);
 
+            _repository.EmptyCustomerCache();
+
             return addedCustomer;
         }
 
