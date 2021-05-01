@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models.Customers;
 
+[assembly: InternalsVisibleTo("CustomerPlatform.Core.Test")]
 namespace CustomerPlatform.Core.Factory
 {
     internal sealed class CustomerFactory : ICustomerFactory

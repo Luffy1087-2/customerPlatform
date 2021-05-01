@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerPlatform.WebApi", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerPlatform.Data", "CustomerPlatform.Data\CustomerPlatform.Data.csproj", "{ED42CD2E-3A88-42CF-968E-9409D95A2DB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerPlatform.Core", "CustomerPlatform.Core\CustomerPlatform.Core.csproj", "{69C531CC-F1AB-4F0F-B003-5A011F14E76B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerPlatform.Core", "CustomerPlatform.Core\CustomerPlatform.Core.csproj", "{69C531CC-F1AB-4F0F-B003-5A011F14E76B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{859403EA-6871-4F13-BA69-735C53238E89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerPlatform.Core.Test", "Tests\CustomerPlatform.Core.Test\CustomerPlatform.Core.Test.csproj", "{9F2EE66F-6328-476A-A669-53B4AF850F8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +31,16 @@ Global
 		{69C531CC-F1AB-4F0F-B003-5A011F14E76B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69C531CC-F1AB-4F0F-B003-5A011F14E76B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69C531CC-F1AB-4F0F-B003-5A011F14E76B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F2EE66F-6328-476A-A669-53B4AF850F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F2EE66F-6328-476A-A669-53B4AF850F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F2EE66F-6328-476A-A669-53B4AF850F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F2EE66F-6328-476A-A669-53B4AF850F8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9F2EE66F-6328-476A-A669-53B4AF850F8E} = {859403EA-6871-4F13-BA69-735C53238E89}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F28E2FE-3AB8-4B06-928D-9ACCA7994F31}
