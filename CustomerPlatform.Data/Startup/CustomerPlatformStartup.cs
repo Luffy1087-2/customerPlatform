@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Data.Abstract;
 using CustomerPlatform.Data.Clients;
@@ -9,7 +10,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: HostingStartup(typeof(CustomerPlatformStartup))]
-
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
+[assembly: InternalsVisibleTo("CustomerPlatform.Data.Test")]
 namespace CustomerPlatform.Data.Startup
 {
     public class CustomerPlatformStartup : IHostingStartup
