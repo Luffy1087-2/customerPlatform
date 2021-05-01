@@ -29,11 +29,23 @@ namespace CustomerPlatform.Data.Clients
             return customers.ToList();
         }
 
-        public async Task<ICustomer> AddCustomer(CustomerDtoBase customer)
+        public async Task<ICustomer> RegisterCustomer(CustomerDtoBase customer)
         {
             await _customersCollection.InsertOneAsync(customer);
 
             return customer;
+        }
+
+        public async Task<ICustomer> UpdateCustomer(CustomerDtoBase customer)
+        {
+            await _customersCollection.ReplaceOneAsync(c => c.Id == customer.Id, customer);
+
+            return customer;
+        }
+
+        public async Task DeleteCustomer(string id)
+        {
+            await _customersCollection.DeleteOneAsync(c => c.Id == id);
         }
 
         #region Private Members

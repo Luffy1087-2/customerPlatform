@@ -8,6 +8,8 @@ namespace CustomerPlatform.Data.Abstract
     internal interface ICustomersDbClient
     {
         Task<List<ICustomer>> GetCustomers();
-        Task<ICustomer> AddCustomer(CustomerDtoBase customer);
+        Task<ICustomer> RegisterCustomer(CustomerDtoBase customer);
+        Task<ICustomer> UpdateCustomer(CustomerDtoBase customer);
+        Task DeleteCustomer(string id);
     }
 }

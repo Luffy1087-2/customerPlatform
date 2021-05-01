@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
@@ -20,11 +21,26 @@ namespace CustomerPlatform.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<object> Get()
+        public async Task<IActionResult> Get()
         {
             List<ICustomer> customers = await _provider.GetAllCustomers();
 
             return Ok(customers.Select(c => (object) c));
+        }
+
+        [HttpGet("{id}", Name = "GetById")]
+        public async Task<IActionResult> GetById(string id)
+        {
+            try
+            {
+                ICustomer customerById = await _provider.GetCustomerById(id);
+
+                return Ok(customerById);
+            }
+            catch (NullReferenceException e)
+            {
+                return NotFound(new ErrorDto(e.Message));
+            }
         }
 
         [HttpPost]
@@ -33,6 +49,36 @@ namespace CustomerPlatform.WebApi.Controllers
             ICustomer registeredCustomer = await _provider.RegisterCustomer(customer);
 
             return Ok(registeredCustomer);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            try
+            {
+                await _provider.DeleteCustomer(id);
+
+                return Ok($"Customer With Id ${id} Was Deleted");
+            }
+            catch (NullReferenceException e)
+            {
+                return NotFound(new ErrorDto(e.Message));
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([ModelBinder(typeof(CustomerModelBinder))] CustomerDtoBase customer)
+        {
+            try
+            {
+                ICustomer updatedCustomer = await _provider.UpdateCustomer(customer);
+
+                return Ok(updatedCustomer);
+            }
+            catch (NullReferenceException e)
+            {
+                return NotFound(new ErrorDto(e.Message));
+            }
         }
     }
 }

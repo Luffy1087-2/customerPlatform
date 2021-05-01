@@ -17,29 +17,48 @@ namespace CustomerPlatform.Data.Providers
             _client = client;
             _repository = repository;
         }
-
         public async Task<List<ICustomer>> GetAllCustomers()
         {
             return await _repository.GetCustomers();
         }
 
+        public async Task<ICustomer> GetCustomerById(string id)
+        {
+            List<ICustomer> customers = await _repository.GetCustomers();
+            ICustomer customerById = customers.Find(c => c.Id == id);
+
+            if (customerById == null)
+                throw new NullReferenceException($"The Customer with {nameof(id)} {id} was not found");
+
+            return customerById;
+        }
+
         public async Task<ICustomer> RegisterCustomer(CustomerDtoBase customer)
         {
-            ICustomer addedCustomer = await _client.AddCustomer(customer);
+            ICustomer addedCustomer = await _client.RegisterCustomer(customer);
 
             _repository.EmptyCustomerCache();
 
             return addedCustomer;
         }
 
-        public Task UpdateCustomer(int customerId, ICustomer customer)
+        public async Task<ICustomer> UpdateCustomer(CustomerDtoBase customer)
         {
-            throw new NotImplementedException();
+            await GetCustomerById(customer.Id);
+            
+            ICustomer updatedCustomer = await _client.UpdateCustomer(customer);
+
+            _repository.EmptyCustomerCache();
+
+            return updatedCustomer;
         }
 
-        public Task DeleteCustomer(int customerId)
+        public async Task DeleteCustomer(string id)
         {
-            throw new NotImplementedException();
+            ICustomer foundCustomer = await GetCustomerById(id);
+            await _client.DeleteCustomer(foundCustomer.Id);
+            
+            _repository.EmptyCustomerCache();
         }
     }
 }

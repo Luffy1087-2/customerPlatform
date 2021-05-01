@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models;
@@ -20,9 +21,17 @@ namespace CustomerPlatform.WebApi.Binders
         {
             var jsonString = await ModelBinderUtility.GetJsonDtoString(bindingContext);
             var baseModel = JsonSerializer.Deserialize<CustomerDtoBase>(jsonString);
-            ICustomer customerModel = _factory.Create(baseModel.CustomerType, jsonString);
 
-            bindingContext.Result = ModelBindingResult.Success(customerModel);
+            try
+            {
+                ICustomer customerModel = _factory.Create(baseModel.CustomerType, jsonString);
+                bindingContext.Result = ModelBindingResult.Success(customerModel);
+            }
+            catch (NotImplementedException e)
+            {
+                bindingContext.ModelState.TryAddModelError("CustomerType", e.Message);
+                bindingContext.Result = ModelBindingResult.Failed();
+            }
         }
     }
 }

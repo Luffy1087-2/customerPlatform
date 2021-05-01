@@ -22,7 +22,7 @@ namespace CustomerPlatform.Core.Factory
 
             if (!hasCallback)
             {
-                throw new NotImplementedException(nameof(hasCallback));
+                throw new NotImplementedException($"{nameof(customerType)} {customerType} is not supported");
             }
 
             ICustomer model = callback(jsonString);
