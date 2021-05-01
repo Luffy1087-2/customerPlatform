@@ -9,21 +9,21 @@ namespace CustomerPlatform.Core.Test.Factory
 {
     public class CustomerFactoryTest
     {
-        private readonly ICustomerFactory _factory;
+        private readonly ICustomerFactory _sut;
 
         private const string RedBetJson = "{\"CustomerType\":\"RedBet\",\"FirstName\":\"NameTest\",\"LastName\":\"SurnameTest\",\"FavoriteFootballTeam\":\"FavoriteFootballTeamTest\",\"Address\":{\"StreetName\":\"AddressTest\",\"Number\":\"NumberTest\",\"ZipCode\":\"ZipCodeTest\"}}";
         private const string MrGreenJson = "{\"CustomerType\":\"MrGreen\",\"FirstName\":\"NameTest\",\"LastName\":\"SurnameTest\",\"PersonalNumber\":\"PersonalNumberTest\",\"Address\":{\"StreetName\":\"AddressTest\",\"Number\":\"NumberTest\",\"ZipCode\":\"ZipCodeTest\"}}";
 
         public CustomerFactoryTest()
         {
-            _factory = new CustomerFactory();
+            _sut = new CustomerFactory();
         }
 
         [Fact]
         public void When_RedBet_Json_Is_Passed_With_Proper_CustomerType_It_Should_Return_RedBetCustomerDto()
         {
             //Act
-            ICustomer customer = _factory.Create("RedBet", RedBetJson);
+            ICustomer customer = _sut.Create("RedBet", RedBetJson);
 
             //Assert
             RedBetCustomerDto redBetCustomerDto = Assert.IsType<RedBetCustomerDto>(customer);
@@ -36,7 +36,7 @@ namespace CustomerPlatform.Core.Test.Factory
         public void When_MrGreen_Json_Is_Passed_With_Proper_CustomerType_It_Should_Return_MrGreenCustomerDto()
         {
             //Act
-            ICustomer customer = _factory.Create("MrGreen", MrGreenJson);
+            ICustomer customer = _sut.Create("MrGreen", MrGreenJson);
 
             //Assert
             MrGreenCustomerDto mrGreenCustomerDto = Assert.IsType<MrGreenCustomerDto>(customer);
@@ -48,7 +48,7 @@ namespace CustomerPlatform.Core.Test.Factory
         public void When_Not_Implemented_CustomerType_Is_Passed_It_Should_Throw_NotImplementedException()
         {
             //Act & Assert
-            Assert.Throws<NotImplementedException>(() => _factory.Create("NotImplementedCustomerType", RedBetJson));
+            Assert.Throws<NotImplementedException>(() => _sut.Create("NotImplementedCustomerType", RedBetJson));
         }
 
         #region Private Members

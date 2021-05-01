@@ -3,10 +3,8 @@ using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Configuration;
 using CustomerPlatform.Core.Models;
-using CustomerPlatform.Core.Models.Customers;
 using CustomerPlatform.Data.Abstract;
 using Microsoft.Extensions.Options;
-using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 
 namespace CustomerPlatform.Data.Clients
@@ -17,8 +15,6 @@ namespace CustomerPlatform.Data.Clients
 
         public CustomersDbClient(IOptions<CustomersDbConfiguration> dbConfig)
         {
-            BsonClassMap.RegisterClassMap<MrGreenCustomerDto>();
-            BsonClassMap.RegisterClassMap<RedBetCustomerDto>();
             _customersCollection = GetCustomerAccessCollection(dbConfig);
         }
 

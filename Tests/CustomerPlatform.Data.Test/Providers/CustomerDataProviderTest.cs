@@ -16,7 +16,7 @@ namespace CustomerPlatform.Data.Test.Providers
     {
         private readonly ICustomersDataRepository _repository;
         private readonly ICustomersDbClient _client;
-        private readonly ICustomerDataProvider _provider;
+        private readonly ICustomerDataProvider _sut;
         private const string RedBetCustomerId = "RedBetId";
         private const string MrGreenCustomerId = "MrGreenId";
 
@@ -24,7 +24,7 @@ namespace CustomerPlatform.Data.Test.Providers
         {
             _repository = Substitute.For<ICustomersDataRepository>();
             _client = Substitute.For<ICustomersDbClient>();
-            _provider = new CustomerDataProvider(_client, _repository);
+            _sut = new CustomerDataProvider(_client, _repository);
         }
 
         [Fact]
@@ -35,7 +35,7 @@ namespace CustomerPlatform.Data.Test.Providers
             _repository.GetCustomers().Returns(customers);
 
             //Act
-            List<ICustomer> returnedCustomers = await _provider.GetAllCustomers();
+            List<ICustomer> returnedCustomers = await _sut.GetAllCustomers();
 
             //Assert
             Assert.NotEmpty(returnedCustomers);
@@ -51,7 +51,7 @@ namespace CustomerPlatform.Data.Test.Providers
             _repository.GetCustomers().Returns(CreateCustomers());
 
             //Act
-            ICustomer customer = await _provider.GetCustomerById(RedBetCustomerId);
+            ICustomer customer = await _sut.GetCustomerById(RedBetCustomerId);
 
             //Assert
             RedBetCustomerDto redBetCustomerDto = Assert.IsType<RedBetCustomerDto>(customer);
@@ -66,7 +66,7 @@ namespace CustomerPlatform.Data.Test.Providers
             _repository.GetCustomers().Returns(CreateCustomers());
 
             //Act
-            ICustomer customer = await _provider.GetCustomerById(MrGreenCustomerId);
+            ICustomer customer = await _sut.GetCustomerById(MrGreenCustomerId);
 
             //Assert
             MrGreenCustomerDto mrGreenCustomerDto = Assert.IsType<MrGreenCustomerDto>(customer);
@@ -81,7 +81,7 @@ namespace CustomerPlatform.Data.Test.Providers
             _repository.GetCustomers().Returns(CreateCustomers());
 
             //Act & Assert
-            await Assert.ThrowsAnyAsync<NullReferenceException>(async () => await _provider.GetCustomerById("IdNotPresent"));
+            await Assert.ThrowsAnyAsync<NullReferenceException>(async () => await _sut.GetCustomerById("IdNotPresent"));
         }
 
         [Fact]
@@ -92,7 +92,7 @@ namespace CustomerPlatform.Data.Test.Providers
             _client.RegisterCustomer(Arg.Any<CustomerDtoBase>()).Returns(customer);
 
             //Act
-            ICustomer returnedCustomer = await _provider.RegisterCustomer(customer);
+            ICustomer returnedCustomer = await _sut.RegisterCustomer(customer);
 
             //Assert
             Assert.NotNull(returnedCustomer);
@@ -109,7 +109,7 @@ namespace CustomerPlatform.Data.Test.Providers
             _client.UpdateCustomer(Arg.Any<CustomerDtoBase>()).Returns(customer);
 
             //Act
-            ICustomer returnedCustomer = await _provider.UpdateCustomer(customer);
+            ICustomer returnedCustomer = await _sut.UpdateCustomer(customer);
 
             //Assert
             Assert.NotNull(returnedCustomer);
@@ -124,7 +124,7 @@ namespace CustomerPlatform.Data.Test.Providers
             _repository.GetCustomers().Returns(CreateCustomers());
 
             //Act
-            await _provider.DeleteCustomer(RedBetCustomerId);
+            await _sut.DeleteCustomer(RedBetCustomerId);
 
             //Assert
             await _client.DeleteCustomer(RedBetCustomerId);
