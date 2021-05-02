@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models;
+using CustomerPlatform.Core.Models.Base;
 using CustomerPlatform.Data.Abstract;
 
 namespace CustomerPlatform.Data.Providers

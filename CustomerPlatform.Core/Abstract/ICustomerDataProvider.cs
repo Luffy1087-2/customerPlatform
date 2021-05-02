@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Models;
+using CustomerPlatform.Core.Models.Base;
 
 namespace CustomerPlatform.Core.Abstract
 {

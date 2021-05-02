@@ -1,8 +1,8 @@
-﻿namespace CustomerPlatform.Core.Models
+﻿namespace CustomerPlatform.Core.Models.Responses
 {
-    public class ErrorDto
+    public class ErrorResponseDto
     {
-        public ErrorDto(int statusCode, string errorMessage)
+        public ErrorResponseDto(int statusCode, string errorMessage)
         {
             StatusCode = statusCode;
             ErrorMessage = errorMessage;

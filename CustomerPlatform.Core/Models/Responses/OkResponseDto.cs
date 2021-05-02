@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace CustomerPlatform.Core.Models
+namespace CustomerPlatform.Core.Models.Responses
 {
     public class OkResponseDto
     {

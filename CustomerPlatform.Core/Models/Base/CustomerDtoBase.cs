@@ -3,7 +3,7 @@ using CustomerPlatform.Core.Abstract;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace CustomerPlatform.Core.Models
+namespace CustomerPlatform.Core.Models.Base
 {
     public class CustomerDtoBase : ICustomer
     {

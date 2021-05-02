@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models;
+using CustomerPlatform.Core.Models.Base;
 using CustomerPlatform.Core.Models.Customers;
+using CustomerPlatform.Core.Models.Responses;
 using CustomerPlatform.WebApi.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -81,7 +83,7 @@ namespace CustomerPlatform.WebApi.Test.Controllers
             //Assert
             var notFoundObjectResult = result as NotFoundObjectResult;
             Assert.NotNull(notFoundObjectResult);
-            var errorDto = notFoundObjectResult.Value as ErrorDto;
+            var errorDto = notFoundObjectResult.Value as ErrorResponseDto;
             Assert.NotNull(errorDto);
             Assert.Equal(ExceptionMessage, errorDto.ErrorMessage);
             Assert.Equal(StatusCodes.Status404NotFound, errorDto.StatusCode);
@@ -132,7 +134,7 @@ namespace CustomerPlatform.WebApi.Test.Controllers
             //Assert
             var notFoundObjectResult = result as NotFoundObjectResult;
             Assert.NotNull(notFoundObjectResult);
-            var errorDto = notFoundObjectResult.Value as ErrorDto;
+            var errorDto = notFoundObjectResult.Value as ErrorResponseDto;
             Assert.NotNull(errorDto);
             Assert.Equal(ExceptionMessage, errorDto.ErrorMessage);
             Assert.Equal(StatusCodes.Status404NotFound, errorDto.StatusCode);
@@ -171,7 +173,7 @@ namespace CustomerPlatform.WebApi.Test.Controllers
             //Assert
             var notFoundObjectResult = result as NotFoundObjectResult;
             Assert.NotNull(notFoundObjectResult);
-            var errorDto = notFoundObjectResult.Value as ErrorDto;
+            var errorDto = notFoundObjectResult.Value as ErrorResponseDto;
             Assert.NotNull(errorDto);
             Assert.Equal(ExceptionMessage, errorDto.ErrorMessage);
             Assert.Equal(StatusCodes.Status404NotFound, errorDto.StatusCode);

@@ -3,6 +3,7 @@ using System.Data;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Factory;
 using CustomerPlatform.Core.Models;
+using CustomerPlatform.Core.Models.Base;
 using CustomerPlatform.Core.Models.Customers;
 using Xunit;
 

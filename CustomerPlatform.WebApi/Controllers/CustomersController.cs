@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models;
+using CustomerPlatform.Core.Models.Base;
+using CustomerPlatform.Core.Models.Responses;
 using CustomerPlatform.WebApi.Binders;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -40,7 +42,7 @@ namespace CustomerPlatform.WebApi.Controllers
             }
             catch (NullReferenceException e)
             {
-                return NotFound(new ErrorDto(StatusCodes.Status404NotFound, e.Message));
+                return NotFound(new ErrorResponseDto(StatusCodes.Status404NotFound, e.Message));
             }
         }
 
@@ -63,7 +65,7 @@ namespace CustomerPlatform.WebApi.Controllers
             }
             catch (NullReferenceException e)
             {
-                return NotFound(new ErrorDto(StatusCodes.Status404NotFound, e.Message));
+                return NotFound(new ErrorResponseDto(StatusCodes.Status404NotFound, e.Message));
             }
         }
 
@@ -78,7 +80,7 @@ namespace CustomerPlatform.WebApi.Controllers
             }
             catch (NullReferenceException e)
             {
-                return NotFound(new ErrorDto(StatusCodes.Status404NotFound, e.Message));
+                return NotFound(new ErrorResponseDto(StatusCodes.Status404NotFound, e.Message));
             }
         }
     }

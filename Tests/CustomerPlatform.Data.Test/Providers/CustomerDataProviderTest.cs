@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models;
+using CustomerPlatform.Core.Models.Base;
 using CustomerPlatform.Core.Models.Customers;
 using CustomerPlatform.Data.Abstract;
 using CustomerPlatform.Data.Providers;

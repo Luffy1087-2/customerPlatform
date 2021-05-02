@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Configuration;
 using CustomerPlatform.Core.Models;
+using CustomerPlatform.Core.Models.Base;
 using CustomerPlatform.Data.Abstract;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
