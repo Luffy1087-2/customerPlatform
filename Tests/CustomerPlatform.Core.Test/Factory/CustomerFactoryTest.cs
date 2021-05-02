@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Factory;
 using CustomerPlatform.Core.Models;
@@ -49,6 +50,13 @@ namespace CustomerPlatform.Core.Test.Factory
         {
             //Act & Assert
             Assert.Throws<NotImplementedException>(() => _sut.Create("NotImplementedCustomerType", RedBetJson));
+        }
+
+        [Fact]
+        public void When_Json_Cant_Be_Bound_It_Should_Throw_ConstraintException()
+        {
+            //Act & Assert
+            Assert.Throws<ConstraintException>(() => _sut.Create("MrGreen", "{}"));
         }
 
         #region Private Members

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text.Json;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models.Customers;
@@ -25,9 +26,30 @@ namespace CustomerPlatform.Core.Factory
                 throw new NotImplementedException($"{nameof(customerType)} {customerType} is not supported");
             }
 
-            ICustomer model = callback(jsonString);
+            ICustomer customerModel = callback(jsonString);
 
-            return model;
+            if (!IsModelBoundProperly(customerModel))
+            {
+                throw new ConstraintException($"Bad deserialize for {nameof(customerModel)}. \n {nameof(jsonString)} is {jsonString}");
+            }
+
+            return customerModel;
         }
+
+        #region Private Members
+
+        private static bool IsModelBoundProperly(ICustomer customerModel)
+        {
+            return customerModel != null &&
+                   !string.IsNullOrWhiteSpace(customerModel.FirstName) &&
+                   !string.IsNullOrWhiteSpace(customerModel.LastName) &&
+                   !string.IsNullOrWhiteSpace(customerModel.CustomerType) &&
+                   customerModel.Address != null &&
+                   !string.IsNullOrWhiteSpace(customerModel.Address.Number) &&
+                   !string.IsNullOrWhiteSpace(customerModel.Address.StreetName) &&
+                   !string.IsNullOrWhiteSpace(customerModel.Address.ZipCode);
+        }
+
+        #endregion
     }
 }
