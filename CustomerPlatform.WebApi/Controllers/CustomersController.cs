@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
 using CustomerPlatform.Core.Models;
 using CustomerPlatform.WebApi.Binders;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CustomerPlatform.WebApi.Controllers
@@ -39,7 +40,7 @@ namespace CustomerPlatform.WebApi.Controllers
             }
             catch (NullReferenceException e)
             {
-                return NotFound(new ErrorDto(e.Message));
+                return NotFound(new ErrorDto(StatusCodes.Status404NotFound, e.Message));
             }
         }
 
@@ -58,11 +59,11 @@ namespace CustomerPlatform.WebApi.Controllers
             {
                 await _provider.DeleteCustomer(id);
 
-                return Ok($"Customer With Id ${id} Was Deleted");
+                return Ok(new OkResponseDto($"Customer With Id ${id} Was Deleted"));
             }
             catch (NullReferenceException e)
             {
-                return NotFound(new ErrorDto(e.Message));
+                return NotFound(new ErrorDto(StatusCodes.Status404NotFound, e.Message));
             }
         }
 
@@ -77,7 +78,7 @@ namespace CustomerPlatform.WebApi.Controllers
             }
             catch (NullReferenceException e)
             {
-                return NotFound(new ErrorDto(e.Message));
+                return NotFound(new ErrorDto(StatusCodes.Status404NotFound, e.Message));
             }
         }
     }

@@ -1,4 +1,5 @@
 #nullable enable
+using System.Runtime.CompilerServices;
 using CustomerPlatform.Core.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+[assembly: InternalsVisibleTo("CustomerPlatform.WebApi.Test")]
 namespace CustomerPlatform.WebApi.Startup
 {
     public class Startup

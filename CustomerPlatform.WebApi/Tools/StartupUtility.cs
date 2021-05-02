@@ -17,7 +17,7 @@ namespace CustomerPlatform.WebApi.Tools
                 .GroupBy(Path.GetFileNameWithoutExtension)
                 .Where(dll => !dll.Key?.Equals(WebProjectName) == true)
                 .Select(f => Assembly.LoadFile(f.First()))
-                .Select(a => a.FullName)
+                .Select(a => a.FullName?.Split(",")[0])
                 .ToList();
 
            string joinedString = string.Join(";", typesString);
