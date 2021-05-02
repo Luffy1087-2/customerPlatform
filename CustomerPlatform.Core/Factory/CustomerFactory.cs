@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text.Json;
 using CustomerPlatform.Core.Abstract;
+using CustomerPlatform.Core.Models.Base;
 using CustomerPlatform.Core.Models.Customers;
 
 namespace CustomerPlatform.Core.Factory
@@ -19,18 +20,18 @@ namespace CustomerPlatform.Core.Factory
 
         public ICustomer Create(string customerType, string jsonString)
         {
-            bool hasCallback = _customersDictionary.TryGetValue(customerType, out Func<string, ICustomer> callback);
+            bool hasCallback = _customersDictionary.TryGetValue(customerType ?? string.Empty, out Func<string, ICustomer> callback);
 
             if (!hasCallback)
             {
-                throw new NotImplementedException($"{nameof(customerType)} {customerType} is not supported");
+                throw new NotImplementedException($"{nameof(CustomerDtoBase.CustomerType)} {customerType} is not supported");
             }
 
             ICustomer customerModel = callback(jsonString);
 
             if (!IsModelBoundProperly(customerModel))
             {
-                throw new ConstraintException($"Bad deserialize for {nameof(customerModel)}. \n {nameof(jsonString)} is {jsonString}");
+                throw new ConstraintException($"Bad deserialize for {customerModel.GetType().Name}. \n {nameof(jsonString)} is {jsonString}");
             }
 
             return customerModel;
