@@ -29,28 +29,7 @@ namespace CustomerPlatform.Core.Factory
 
             ICustomer customerModel = callback(jsonString);
 
-            if (!IsModelBoundProperly(customerModel))
-            {
-                throw new ConstraintException($"Bad deserialize for {customerModel.GetType().Name}. \n {nameof(jsonString)} is {jsonString}");
-            }
-
             return customerModel;
         }
-
-        #region Private Members
-
-        private static bool IsModelBoundProperly(ICustomer customerModel)
-        {
-            return customerModel != null &&
-                   !string.IsNullOrWhiteSpace(customerModel.FirstName) &&
-                   !string.IsNullOrWhiteSpace(customerModel.LastName) &&
-                   !string.IsNullOrWhiteSpace(customerModel.CustomerType) &&
-                   customerModel.Address != null &&
-                   !string.IsNullOrWhiteSpace(customerModel.Address.Number) &&
-                   !string.IsNullOrWhiteSpace(customerModel.Address.StreetName) &&
-                   !string.IsNullOrWhiteSpace(customerModel.Address.ZipCode);
-        }
-
-        #endregion
     }
 }

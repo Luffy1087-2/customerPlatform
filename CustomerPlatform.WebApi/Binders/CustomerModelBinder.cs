@@ -28,10 +28,6 @@ namespace CustomerPlatform.WebApi.Binders
 
                 return;
             }
-            catch (ConstraintException e)
-            {
-                bindingContext.ModelState.TryAddModelError("Json", e.Message);
-            }
             catch (JsonException e)
             {
                 bindingContext.ModelState.TryAddModelError("Json", e.Message);

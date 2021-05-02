@@ -65,28 +65,6 @@ namespace CustomerPlatform.WebApi.Test.Binders
         }
 
         [Fact]
-        public async Task ModelState_Should_Be_Written_When_Json_Cant_Be_Bound_And_Factory_Raises_ConstraintException()
-        {
-            //Arrange
-            const string errorMessage = "JsonCantCantBeBound";
-            const string cantBeBoundJson = "{}";
-            ModelBindingContext modelBindingContext = CreateModelBindingContext(cantBeBoundJson);
-            _factory.Create(Arg.Is<string>(ct => ct == null), Arg.Is<string>(j => j == cantBeBoundJson)).Throws(new ConstraintException(errorMessage));
-
-            //Act
-            await _sut.BindModelAsync(modelBindingContext);
-
-            //Assert
-            Assert.Null(modelBindingContext.Result.Model);
-            Assert.Equal(1, modelBindingContext.ModelState.ErrorCount);
-            ModelStateEntry modelStateEntry = modelBindingContext.ModelState["Json"];
-            Assert.NotNull(modelStateEntry);
-            ModelError modelError = Assert.Single(modelStateEntry.Errors);
-            Assert.NotNull(modelError);
-            Assert.Equal(errorMessage, modelError.ErrorMessage);
-        }
-
-        [Fact]
         public async Task ModelState_Should_Be_Written_When_Json_Is_Not_Well_Formatted()
         {
             //Arrange
