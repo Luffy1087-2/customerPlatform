@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CustomerPlatform.Core.Models;
 using CustomerPlatform.Core.Models.Base;
 
 namespace CustomerPlatform.Core.Abstract
@@ -23,7 +22,7 @@ namespace CustomerPlatform.Core.Abstract
         /// </summary>
         /// <param name="customer">The customer object</param>
         /// <returns>The customer that was just added</returns>
-        Task<ICustomer> RegisterCustomer(CustomerDtoBase customer);
+        Task<ICustomer> StoreCustomer(CustomerDtoBase customer);
         /// <summary>
         /// Updates the customer by id
         /// </summary>

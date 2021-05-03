@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
-using CustomerPlatform.Core.Models;
 using CustomerPlatform.Core.Models.Base;
 using CustomerPlatform.Core.Models.Customers;
 using CustomerPlatform.Data.Abstract;
@@ -93,7 +92,7 @@ namespace CustomerPlatform.Data.Test.Providers
             _client.RegisterCustomer(Arg.Any<CustomerDtoBase>()).Returns(customer);
 
             //Act
-            ICustomer returnedCustomer = await _sut.RegisterCustomer(customer);
+            ICustomer returnedCustomer = await _sut.StoreCustomer(customer);
 
             //Assert
             Assert.NotNull(returnedCustomer);

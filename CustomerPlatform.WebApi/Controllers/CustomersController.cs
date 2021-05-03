@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
-using CustomerPlatform.Core.Models;
 using CustomerPlatform.Core.Models.Base;
 using CustomerPlatform.Core.Models.Responses;
 using CustomerPlatform.WebApi.Binders;
@@ -47,9 +46,9 @@ namespace CustomerPlatform.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register([ModelBinder(typeof(CustomerModelBinder))] CustomerDtoBase customer)
+        public async Task<IActionResult> Create([ModelBinder(typeof(CustomerModelBinder))] CustomerDtoBase customer)
         {
-            ICustomer registeredCustomer = await _provider.RegisterCustomer(customer);
+            ICustomer registeredCustomer = await _provider.StoreCustomer(customer);
 
             return Ok(registeredCustomer);
         }

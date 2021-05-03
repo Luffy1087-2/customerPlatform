@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
-using CustomerPlatform.Core.Models;
 using CustomerPlatform.Core.Models.Base;
 using CustomerPlatform.Core.Models.Customers;
 using CustomerPlatform.Core.Models.Responses;
@@ -95,10 +94,10 @@ namespace CustomerPlatform.WebApi.Test.Controllers
             //Arrange
             List<ICustomer> customers = GetCustomers();
             var customerToRegister = (CustomerDtoBase)customers.ElementAt(0);
-            _provider.RegisterCustomer(customerToRegister).Returns(customerToRegister);
+            _provider.StoreCustomer(customerToRegister).Returns(customerToRegister);
 
             //Act
-            IActionResult result = await _sut.Register(customerToRegister);
+            IActionResult result = await _sut.Create(customerToRegister);
 
             //Assert
             var okObjectResult = result as OkObjectResult;

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data;
 using System.Text.Json;
 using System.Threading.Tasks;
 using CustomerPlatform.Core.Abstract;
-using CustomerPlatform.Core.Models;
 using CustomerPlatform.Core.Models.Base;
 using CustomerPlatform.WebApi.Tools;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
